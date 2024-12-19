@@ -1,0 +1,206 @@
+Benjamin LE BERRE Quentin GOUBY OLLIVIER
+### EXERCICE 1 : ###
+N=int(input("Entrez un nombre entier égal ou supérieur à 5: "))
+while N < 5:
+    N = int(input("N doit être supérieur ou égal à 5. Entrez à nouveau N : "))
+
+### 1 ###
+#  Créer et d’initialiser toute chaine de caractères dont MaChaine.
+MaChaine= "abcdefghijklmnopqrstuvwxyz" * N
+
+### 2 ###
+#  Afficher la chaine MaChaine.
+print("-------------------")
+print("Question 2:")
+print(MaChaine)
+print("\n")
+
+### 3 ###
+#  Recopier les 17 derniers caractères de MaChaine dans TaChaine.
+TaChaine= MaChaine[-17:] # On prend les 17 derniers caractères de MaChaine
+print("-------------------")
+print("Question 3:")
+print(TaChaine)
+print("\n")
+
+### 4 ###
+#  Transformer Machaine de manière à contenir alternativement un caractère en minuscule et le suivant en majuscule.
+for i in range(0, len(MaChaine), 2): # On commence à 0 et on incrémente de 2
+    MaChaine= MaChaine[:i] + MaChaine[i].upper() + MaChaine[i+1:] # On met en majuscule le caractère à l'indice i et on le remet dans la chaine MaChaine
+print("-------------------")
+print("Question 4:")
+print(MaChaine)
+print("\n")
+
+### 5 ### 
+# Inverser la chaine "MaChaine" puis l’afficher.
+MaChaine= MaChaine[::-1] # On inverse la chaine
+print("-------------------")
+print("Question 5:")
+print(MaChaine)
+print("\n")
+
+### 6 ###
+#  Construire une pyramide avec TaChaine puis l’afficher.
+print("-------------------")
+print("Question 6:")
+for i in range(1, len(TaChaine)+1): # On commence à 1 et on incrémente de 1 jusqu'à la taille de TaChaine
+    print(TaChaine[:i]) # On affiche les i premiers caractères de TaChaine
+
+print("\n")
+
+### 7 ###
+#  Rechercher une sous chaine dont la taille est paramétrable dans TaChaine en affichant cette taille.
+print("-------------------")
+print("Question 7:")
+sous_chaine_taille = int(input("Entrez la taille de la sous-chaîne à rechercher : "))
+while sous_chaine_taille > len(TaChaine):
+    sous_chaine_taille = int(input("La taille doit être inférieure ou égale à la longueur de TaChaine. Entrez à nouveau la taille : "))
+sous_chaine = TaChaine[:sous_chaine_taille]
+print(f"Sous-chaîne de taille {sous_chaine_taille} : {sous_chaine}")
+print("\n")
+
+### 8 ###
+#  Transformer TaChaine en une liste triée puis l’afficher.
+TaChaine= list(TaChaine) # On transforme TaChaine en liste
+TaChaine.sort() # On trie la liste
+print("-------------------")
+print("Question 8:")
+print(TaChaine)
+print("\n")
+
+
+
+
+### EXERCICE 2 : ###
+### 1 ###
+#Créer et d’initialiser une liste liste1 d’entiers d’une taille paramétrable supérieure à 20.
+
+Liste1 = []
+input1 = input("Entrez un nombre supérieur à 20: ")
+if int(input1) < 20:
+    print("Le nombre est inférieur à 20.")
+else:
+    for i in range(1, int(input1)+1):
+        Liste1.append(i)
+    print("Question 1 : Liste 1 : ")
+    print(Liste1)
+
+
+### 2 ###
+#Créer et d’initialiser une liste liste2 d’entiers d’une taille paramétrable copiant les entiers impairs de liste1
+Liste2 = []
+impairs = []
+input2 = input("Entrez un nombre inférieur à "+input1+": ") ## Il faut décider si le nombre doit etre egal a input1 divisé par 2 ou non car il y a que 15 nb impairs dans 30
+if int(input2) > int(input1):
+    print("-------------------")
+    print("Le nombre est supérieur à "+input1+".")
+else:
+    #ajouter uniquement les nombres impairs en ajoutant le nombre de valeurs dans input2
+    for x in Liste1:
+        if x % 2 != 0:
+            impairs.append(x)
+    Liste2 = impairs[:int(input2)]
+    print("-------------------")
+    print("Question 2 : Liste 2 : ")
+    print(Liste2)
+
+### 3 ###
+#Utiliser une fonction affichant les 2 listes triées dans un ordre décroissant
+Liste1.sort(reverse=True)
+Liste2.sort(reverse=True)
+print("-------------------")
+print("Question 3 : Liste 1 et Liste 2 triées en ordre décroissant : ")
+print("Liste 1",Liste1)
+print("Liste 2",Liste2)
+
+### 4 ###
+#Utiliser une fonction ajoutant un ou plusieurs entiers à liste1 en fin de liste ou dans  emplacement spécifique
+
+def ajout_liste1(): #Fonction pour ajouter un nombre à la fin de la liste
+    ajout = input("Entrez un nombre à ajouter à la liste: ")
+    Liste1.append(int(ajout))
+    print("-------------------")
+    print("Question 4 : Liste 1 avec le nombre ajouté : ")
+    print(Liste1)
+
+def ajout_liste1_emplacement(): #Foncction pour ajouter un nombre à un emplacement spécifique
+    ajout = input("Entrez un nombre à ajouter à la liste: ")
+    emplacement = input("Entrez un emplacement pour ajouter le nombre: ")
+    Liste1.insert(int(emplacement), int(ajout))
+    print("-------------------")
+    print("Question 4 : Liste 1 avec le nombre ajouté à l'emplacement spécifique : ")
+    print(Liste1)
+
+
+def choix (): #Fonction permettant de choisir si on veut ajouter un nombre à la fin de la liste ou à un emplacement spécifique
+    choix = input("Voulez-vous ajouter un nombre à la fin de la liste ou à un emplacement spécifique? (fin = f ou e = emplacement): ")
+    if choix == "f":
+        ajout_liste1()
+    elif choix == "e":
+        ajout_liste1_emplacement()
+    else:
+        print("Choix invalide.")
+        choix()
+
+choix()
+
+### 5 ###
+#Utiliser une fonction supprimant de liste1 toutes les occurrences d’un entier entré par l’utilisateur.
+def supprimer_liste1():
+    supprimer = input("Entrez un nombre à supprimer de la liste: ")
+    for i in Liste1: #On parcourt la liste
+        if i == int(supprimer): #On compare chaque élément de la liste à l'entier à supprimer
+            Liste1.remove(int(supprimer)) #On supprime l'entier de la liste
+    print("-------------------")
+    print("Question 5 : Liste 1 sans le nombre supprimé : ")
+    print(Liste1)
+
+supprimer_liste1()
+
+### 6 ###
+#Créer une liste liste3 avec des éléments aléatoires de liste1 et liste2
+Liste3 = []
+def liste3():
+    import random
+    for i in range(0, len(Liste1)): #Parcours de la liste
+        Liste3.append(random.choice(Liste1))#On ajoute un élément aléatoire de la liste 1 à la liste 3
+    for i in range(0, len(Liste2)):
+        Liste3.append(random.choice(Liste2))#On ajoute un élément aléatoire de la liste 2 à la liste 3
+    print("-------------------")
+    print("Question 6 : Liste 3 : ")
+    print(Liste3)
+
+liste3()
+
+### 7 ###
+# Utiliser une fonction qui permet d’inverser toute liste dont la liste3
+def inverser_liste():
+    Liste1.reverse()
+    Liste2.reverse()
+    Liste3.reverse()
+    print("-------------------")
+    print("Questions 7 : Liste inversée ")
+    print("Liste 1 :", Liste1)
+    print("Liste 2 :",Liste2)
+    print("Liste 3 :",Liste3)
+
+inverser_liste()
+
+### 8 ###
+#Utiliser une fonction qui prend en paramètres les deux listes liste1 et liste2 et renvoyant une liste contenant deux sous listes (l_pairs, l_impairs)
+def indices_pairs_impairs(Liste1, Liste2):
+    l_pairs = []
+    l_impairs = []
+    for i in range(len(Liste2)): #On parcourt la liste
+        if i % 2 == 0: #Si l'indice est pair
+            l_pairs.append(Liste2[i]) #On ajoute l'élément à la liste des pairs
+    for i in range(len(Liste1)):
+        if i % 2 != 0: #Si l'indice est impair
+            l_impairs.append(Liste1[i]) #On ajoute l'élément à la liste des impairs
+    print("-------------------")
+    print("Question 8 : Liste des nombres pairs et impairs : ")
+    print(l_pairs,)
+    print( l_impairs)
+
+indices_pairs_impairs(Liste1, Liste2)
