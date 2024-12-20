@@ -204,3 +204,126 @@ def indices_pairs_impairs(Liste1, Liste2):
     print( l_impairs)
 
 indices_pairs_impairs(Liste1, Liste2)
+
+
+### EXERCICE 3 ###
+### 1 ### 
+#Proposer une création et une initialisation interactive de My_PC et pour chaque dictionnaire de pc l'ajouté dans le  dico principal My_PC.
+print("Question 1 :")
+My_PC = {}
+N = int(input("Entrez le nombre de PC à ajouter: "))
+for i in range(1, N+1):#On parcourt le nombre de PC à ajouter
+    pc = {}
+    pc["CPU"] = input("Entrez le CPU: ")
+    pc["GPU"] = input("Entrez le GPU: ")
+    pc["RAM"] = input("Entrez la quantité de RAM: ")
+    pc["Stockage"] = input("Entrez la quantité de stockage: ")
+    pc["OS"] = input("Entrez le système d'exploitation: ")
+    My_PC["PC"+str(i)] = pc
+print("-------------------")
+print(My_PC)
+print("\n")
+
+### 2 ###
+#Afficher par une fonction paramétrable les clés du PC1 de My_PC.
+print("-------------------")
+print("Question 2 :")
+first_key = next(iter(My_PC))  # Obtenir la première clé du dictionnaire
+def afficher_cles_pc1(My_PC):
+    for key in My_PC[first_key]:
+        print(key)
+afficher_cles_pc1(My_PC)
+print("\n")
+
+### 3 ###
+#Afficher par une fonction paramétrable les valeurs de My_PC pour chaque pc.
+print("-------------------")
+print("Question 3 :")
+def afficher_valeurs(My_PC):
+    for key, value in My_PC.items(): #On parcourt le dictionnaire
+        print(" ".join(value.values())) #On affiche les valeurs
+afficher_valeurs(My_PC)
+print("\n")
+
+### 4 ###
+#Proposer une fonction permettant l’extraction des clés dans une liste.
+print("-------------------")
+print("Question 4 :")
+def extraction_cles(My_PC):
+    cles = []
+    for key in My_PC[first_key]: #On parcourt le PC pour afficher les clés
+        cles.append(key)
+    print(cles)
+extraction_cles(My_PC)
+print("\n")
+
+### 5 ###
+#Proposer une fonction permettant l’extraction des valeurs dans une liste.
+print("-------------------")
+print("Question 5 :")
+def extraction_valeurs(My_PC):
+    for key, value in My_PC.items(): #On parcourt le dictionnaire
+        print(value.values()) #On affiche les valeurs
+extraction_valeurs(My_PC)
+print("\n")
+
+### 6 ###
+#Proposer une fonction permettant la correction de quantité de RAM.
+print("-------------------")
+print("Question 6 :")
+def correction_ram(My_PC):
+    pc = input("Entrez le PC sur lequel vous souhaitez corriger la RAM: ")
+    My_PC[pc]["RAM"] = input("Entrez la nouvelle quantité de RAM: ")
+    print(My_PC)
+
+correction_ram(My_PC)
+print("\n")
+
+### 7 ###
+#Proposer une fonction permettant le tri de My_PC selon la quantité de sockage.
+print("-------------------")
+print("Question 7 :")
+def tri_stockage(My_PC):
+    # Tri par 'Stockage' en prenant soin de traiter le stockage comme un entier
+    for key, value in sorted(My_PC.items(), key=lambda x: x[1]["Stockage"]):
+        print(key, value)
+
+tri_stockage(My_PC)
+print("\n")
+
+### 8 ###
+#Proposer une fonction permettant d’inverser deux paramètres du dictionnaire.
+print("-------------------")
+print("Question 8 :")
+def inverser_parametres(My_PC):
+    pc = input("Entrez le PC à modifier ( mettre : PC suvi de son numéro) : ")
+    param1 = input("Entrez le premier paramètre à échanger: ")
+    param2 = input("Entrez le deuxième paramètre à échanger: ")
+    My_PC[pc][param1], My_PC[pc][param2] = My_PC[pc][param2], My_PC[pc][param1] #On échange les paramètres
+    print(My_PC)
+
+inverser_parametres(My_PC)
+print("\n")
+
+### 9 ### 
+#Proposer une fonction permettant la sauvegarde de My_PC dans un autre dictionnaire CP_MyPC.
+print("-------------------")
+print("Question 9 :")
+def sauvegarde(nom, My_PC):
+    CP_MyPC = My_PC.copy() #On copie le dictionnaire My_PC
+    print(nom, CP_MyPC)
+
+sauvegarde("CP_MyPC", My_PC)
+print("Sauvegarde réussie")
+print("\n")
+
+### 10 ###
+#Proposer une fonction affichant le PC le plus performant de My_PC.
+print("-------------------")
+print("Question 10 :")
+def pc_plus_performant(My_PC):
+    pc = max(My_PC, key=lambda x: int(My_PC[x]["RAM"]))#On prend le PC avec la RAM la plus élevée en prenant soin de traiter la RAM comme un entier
+    print(pc, My_PC[pc]) #On affiche le PC le plus performant
+    print("PC le plus performant : ", pc)
+
+pc_plus_performant(My_PC)
